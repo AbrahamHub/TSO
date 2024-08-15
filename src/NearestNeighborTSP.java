@@ -3,6 +3,7 @@ import java.util.Arrays;
 public class NearestNeighborTSP {
     private static final int V = 7; // Número de nodos
     private static final int M = Integer.MAX_VALUE; // Valor para representar distancias infinitas
+    private static final String[] NODOS = {"A", "B", "C", "F", "R", "T", "S"}; // Letras correspondientes a los nodos
 
     // Función para resolver el TSP usando la heurística del vecino más cercano
     void tsp(int[][] graph, int start) {
@@ -49,7 +50,7 @@ public class NearestNeighborTSP {
             // Imprimimos la ruta seguida y la distancia total
             System.out.println("Ruta seguida: ");
             for (int i = 0; i <= V; i++) {
-                System.out.print(path[i] + (i < V ? " -> " : ""));
+                System.out.print(NODOS[path[i]] + (i < V ? " -> " : ""));
             }
             System.out.println("\nDistancia total mínima: " + totalDistance);
         } else {
@@ -60,16 +61,16 @@ public class NearestNeighborTSP {
     public static void main(String[] args) {
         // Matriz de adyacencia (A=0, B=1, C=2, F=3, R=4, T=5, S=6)
         int[][] graph = {
-                { 0, 9, 27, 12, M, M, M },  // A
-                { 9, 0, M, M, M, M, 8 },    // B
-                { 25, M, 0, 8, 11, 13, M }, // C
-                { 15, M, 9, 0, 5, M, M },   // F
-                { M, M, 10, 7, 0, 14, M },  // R
-                { M, M, 18, M, 14, 0, 4 },  // T
-                { M, 21, 6, M, M, 8, 0 }    // S
+                { 0, 9, 8, 12, 25, M, M },  // A
+                { 8, 0, M, M, M, 21, 6 },    // B
+                { 10, M, 0, 9, 10, 14, 6 }, // C
+                { 15, M, 8, 0, 7, 16, 18 },   // F
+                { 27, M, 11, 5, 0, 8, M },  // R
+                { M, 23, 13, 14, 8, 0, 4 },  // T
+                { M, 8, 7, 15, M, 8, 0 }    // S
         };
 
         NearestNeighborTSP tsp = new NearestNeighborTSP();
-        tsp.tsp(graph, 2);  // Comenzamos el TSP desde el nodo A (índice 0)
+        tsp.tsp(graph, 0);  // Comenzamos el TSP desde el nodo A (índice 0)
     }
 }
